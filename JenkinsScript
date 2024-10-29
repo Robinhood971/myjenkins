@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    environment {
+        PATH = "/opt/maven/bin:$PATH"
+    }
+    
+    stages {
+        stage ('Code') {
+            steps {
+                git url: 'https://github.com/Robinhood971/war-web-project.git', branch: 'master'
+            }
+        }
+        
+        stage ('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+    }
+}
